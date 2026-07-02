@@ -24,7 +24,7 @@ import {
 } from "lucide-react";
 
 import ballAsset from "@/assets/cricket-ball.png.asset.json";
-const ballImg = ballAsset.url;
+import ballImg  from "@/assets/ball.png";
 import stadiumImg from "@/assets/stadium.jpg";
 import batsmanImg from "@/assets/batsman.jpg";
 import crowdImg from "@/assets/crowd.jpg";
