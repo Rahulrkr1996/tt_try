@@ -1,0 +1,477 @@
+.campus-register {
+  display: grid;
+  grid-template-columns: 1.55fr 1fr;
+  gap: 28px;
+  margin-top: -64px;
+  margin-bottom: 80px;
+  position: relative;
+  z-index: 3;
+  align-items: start;
+}
+
+/* ---- Registration form card ---- */
+.register-card {
+  background: var(--color-cream);
+  border-radius: var(--radius-lg);
+  padding: 44px 40px;
+  color: #1c1b19;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+}
+
+/* ---- Login / Register tabs ---- */
+.auth-tabs {
+  display: flex;
+  gap: 6px;
+  background: #efe9e1;
+  border-radius: 12px;
+  padding: 6px;
+  margin-bottom: 28px;
+}
+
+.auth-tabs__btn {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 12px 16px;
+  font-family: var(--font-display);
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #79766c;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.auth-tabs__btn:hover {
+  color: #1c1b19;
+}
+
+.auth-tabs__btn.is-active {
+  background: var(--color-orange);
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(255, 91, 31, 0.35);
+}
+
+/* ---- Form-level error alert ---- */
+.form-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  background: #fdecea;
+  border: 1px solid #f4b7ae;
+  color: #a4271f;
+  font-size: 13px;
+  line-height: 1.5;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+}
+
+.form-alert svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.register-card .btn[disabled] {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* ---- Login form extras ---- */
+.login-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 4px 0 22px;
+  flex-wrap: wrap;
+}
+
+.form-check--inline {
+  margin: 0;
+}
+
+.login-row__forgot {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-orange);
+}
+
+.auth-switch {
+  text-align: center;
+  font-size: 13px;
+  color: #79766c;
+  margin-top: 18px;
+}
+
+.auth-switch__link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-weight: 700;
+  color: var(--color-orange);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.register-card__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(24px, 2.6vw, 30px);
+  line-height: 1.15;
+  margin-bottom: 8px;
+  color: #15140f;
+}
+
+.register-card__title span {
+  color: var(--color-orange);
+}
+
+.register-card__sub {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #79766c;
+  margin-bottom: 26px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.field--full {
+  margin-bottom: 14px;
+}
+
+.field__icon {
+  position: absolute;
+  left: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-orange);
+  pointer-events: none;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  padding: 14px 16px 14px 44px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: #fbf8f4;
+  font-size: 14px;
+  color: #1c1b19;
+  appearance: none;
+}
+
+.field select:invalid {
+  color: #9c988d;
+}
+
+.field input::placeholder {
+  color: #9c988d;
+}
+
+.field input:focus,
+.field select:focus {
+  outline: none;
+  border-color: var(--color-orange);
+  background: #ffffff;
+}
+
+/* ---- Textareas (why join / experience) ---- */
+.textfield {
+  display: block;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+  background: #fbf8f4;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+  position: relative;
+}
+
+.textfield:focus-within {
+  border-color: var(--color-orange);
+  background: #ffffff;
+}
+
+.textfield__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #1c1b19;
+  margin-bottom: 8px;
+}
+
+.textfield__head .field__icon {
+  position: static;
+  color: var(--color-orange);
+}
+
+.textfield textarea {
+  width: 100%;
+  border: none;
+  background: transparent;
+  resize: vertical;
+  font-size: 14px;
+  color: #1c1b19;
+  font-family: inherit;
+  padding: 0;
+  min-height: 60px;
+}
+
+.textfield textarea::placeholder {
+  color: #9c988d;
+}
+
+.textfield textarea:focus {
+  outline: none;
+}
+
+.textfield__count {
+  display: block;
+  text-align: right;
+  font-size: 11.5px;
+  color: #9c988d;
+  margin-top: 4px;
+}
+
+/* ---- Resume upload ---- */
+.upload-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border: 1px dashed rgba(0, 0, 0, 0.18);
+  border-radius: 12px;
+  background: #fbf8f4;
+  padding: 16px;
+  margin-bottom: 18px;
+  cursor: pointer;
+}
+
+.upload-field:hover {
+  border-color: var(--color-orange);
+}
+
+.upload-field .field__icon {
+  position: static;
+}
+
+.upload-field__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.upload-field__text strong {
+  font-size: 13.5px;
+  color: #1c1b19;
+}
+
+.upload-field__text small {
+  font-size: 12px;
+  color: #9c988d;
+}
+
+.upload-field__btn {
+  flex-shrink: 0;
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 9px 16px;
+  border-radius: 8px;
+  background: #efe9e1;
+  color: #4a473f;
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.upload-field input[type='file'] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* ---- Terms checkbox ---- */
+.form-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #4a473f;
+  margin: 4px 0 22px;
+}
+
+.form-check input {
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  accent-color: var(--color-orange);
+  flex-shrink: 0;
+}
+
+.form-check a {
+  color: var(--color-orange);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.register-card__secure {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-size: 12.5px;
+  color: #79766c;
+  margin-top: 18px;
+  text-align: center;
+}
+
+.register-card__secure svg {
+  flex-shrink: 0;
+  color: var(--color-orange);
+}
+
+/* ---- Benefits sidebar ---- */
+.register-aside {
+  background: var(--color-cream);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+}
+
+.register-aside__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 24px;
+  color: #15140f;
+  margin-bottom: 26px;
+}
+
+.benefit-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin-bottom: 28px;
+}
+
+.benefit-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.benefit-list__icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: #15140f;
+  color: var(--color-orange);
+}
+
+.benefit-list li strong {
+  display: block;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #15140f;
+  margin-bottom: 3px;
+}
+
+.benefit-list li small {
+  display: block;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: #79766c;
+}
+
+.contact-box {
+  background: #15140f;
+  border-radius: var(--radius-md);
+  padding: 24px;
+  color: #fff;
+}
+
+.contact-box__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 16px;
+  color: var(--color-orange);
+  margin-bottom: 8px;
+}
+
+.contact-box__text {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #c9c6c0;
+  margin-bottom: 14px;
+}
+
+.contact-box__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-orange);
+}
+
+@media (max-width: 1080px) {
+  .campus-register {
+    grid-template-columns: 1fr;
+    margin-top: -40px;
+  }
+}
+
+@media (max-width: 640px) {
+  .register-card,
+  .register-aside {
+    padding: 28px 22px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 420px) {
+  .campus-register {
+    margin-top: -24px;
+  }
+
+  .register-card,
+  .register-aside {
+    padding: 22px 16px;
+  }
+
+  .upload-field {
+    flex-wrap: wrap;
+  }
+
+  .upload-field__btn {
+    max-width: 100%;
+  }
+}

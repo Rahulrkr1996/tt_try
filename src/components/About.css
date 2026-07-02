@@ -1,0 +1,537 @@
+/* ═══════════════════════════════════════════
+   BACKGROUND ANIMATIONS
+   ═══════════════════════════════════════════ */
+
+/* ── Container ── */
+.about__bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Lift all content above the bg layer */
+.about__copy,
+.about__emblem,
+.about__pillars {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── 1. Floating ambient orbs ── */
+.about__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0;
+  will-change: transform;
+}
+
+.about.in-view .about__orb--1 {
+  width: 380px;
+  height: 380px;
+  background: rgba(255, 91, 31, 0.10);
+  top: -15%;
+  left: -8%;
+  animation:
+    orbDrift1 14s ease-in-out infinite,
+    orbFadeIn 2s ease 0.2s forwards;
+}
+
+.about.in-view .about__orb--2 {
+  width: 300px;
+  height: 300px;
+  background: rgba(255, 140, 50, 0.07);
+  bottom: -20%;
+  right: -10%;
+  animation:
+    orbDrift2 18s ease-in-out infinite,
+    orbFadeIn 2s ease 0.5s forwards;
+}
+
+.about.in-view .about__orb--3 {
+  width: 220px;
+  height: 220px;
+  background: rgba(200, 60, 20, 0.06);
+  top: 35%;
+  left: 50%;
+  animation:
+    orbDrift3 11s ease-in-out infinite,
+    orbFadeIn 2s ease 0.8s forwards;
+}
+
+@keyframes orbDrift1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25%      { transform: translate(70px, 50px) scale(1.05); }
+  50%      { transform: translate(40px, 100px) scale(0.95); }
+  75%      { transform: translate(-30px, 40px) scale(1.02); }
+}
+
+@keyframes orbDrift2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(-60px, -40px) scale(1.08); }
+  66%      { transform: translate(-40px, -80px) scale(0.96); }
+}
+
+@keyframes orbDrift3 {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(50px, -50px); }
+}
+
+@keyframes orbFadeIn {
+  to { opacity: 1; }
+}
+
+/* ── 2. Radial pulse from center (emblem area) ── */
+.about__pulse {
+  position: absolute;
+  top: 50%;
+  left: 46%;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 91, 31, 0.07) 0%,
+    rgba(255, 91, 31, 0.03) 40%,
+    transparent 70%
+  );
+  transform: translate(-50%, -50%) scale(0.6);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.about.in-view .about__pulse {
+  animation: pulseBurst 7s ease-out infinite, orbFadeIn 1.5s ease 0.4s forwards;
+}
+
+.about.in-view .about__pulse--2 {
+  animation: pulseBurst 7s ease-out 3.5s infinite, orbFadeIn 1.5s ease 0.6s forwards;
+}
+
+@keyframes pulseBurst {
+  0% {
+    transform: translate(-50%, -50%) scale(0.6);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(3);
+    opacity: 0;
+  }
+}
+
+/* ── 3. Sweeping light streak ── */
+.about__streak {
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 70%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 91, 31, 0.015) 20%,
+    rgba(255, 91, 31, 0.04) 45%,
+    rgba(255, 91, 31, 0.04) 55%,
+    rgba(255, 91, 31, 0.015) 80%,
+    transparent 100%
+  );
+  transform: skewX(-12deg);
+  will-change: transform;
+}
+
+.about.in-view .about__streak {
+  animation: streakSweep 9s ease-in-out 1.5s infinite;
+}
+
+@keyframes streakSweep {
+  0%, 15%  { left: -120%; }
+  50%      { left: 150%; }
+  85%, 100% { left: 150%; }
+}
+
+/* ── 4. Cinematic film grain ── */
+.about__grain {
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grainShift 0.6s steps(5) infinite;
+  pointer-events: none;
+}
+
+@keyframes grainShift {
+  0%, 100% { transform: translate(0, 0); }
+  10%  { transform: translate(-5%, -10%); }
+  30%  { transform: translate(7%, -25%); }
+  50%  { transform: translate(-12%, 8%); }
+  70%  { transform: translate(15%, 3%); }
+  90%  { transform: translate(-8%, 12%); }
+}
+
+/* ── 5. Vignette (always on, no animation needed) ── */
+.about__vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 70% 60% at 50% 50%,
+    transparent 0%,
+    rgba(0, 0, 0, 0.35) 100%
+  );
+  pointer-events: none;
+}
+
+
+/* ═══════════════════════════════════════════
+   SECTION BASE & SCROLL ANIMATIONS
+   (your existing animations unchanged below)
+   ═══════════════════════════════════════════ */
+
+:root {
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes titleMaskReveal {
+  from { opacity: 0; transform: translateY(110%); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes emblemReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.7) rotate(-3deg);
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5)) brightness(0.4);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5)) brightness(1);
+  }
+}
+
+@keyframes emblemFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
+}
+
+@keyframes emblemGlow {
+  0%, 100% { filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5)); }
+  50%      { filter: drop-shadow(0 24px 50px rgba(255, 91, 31, 0.15)); }
+}
+
+@keyframes slideFromRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes expandLine {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+@keyframes drawAccent {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* ── Hidden base state ── */
+.about__copy .eyebrow,
+.about__title-line span,
+.about__text,
+.about__link,
+.about__emblem,
+.pillar {
+  opacity: 0;
+}
+
+.about__emblem {
+  transform: scale(0.7);
+}
+
+/* ── Section ── */
+.about {
+  position: relative;
+  margin-top: 28px;
+  background: url('/assets/spartan_bg.png');
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 10px 56px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.1fr;
+  gap: 40px;
+  align-items: center;
+  overflow: hidden;
+}
+
+.about::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--color-orange) 30%, var(--color-orange) 70%, transparent 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  z-index: 2;
+}
+
+.about.in-view::before {
+  animation: drawAccent 0.9s var(--ease-out-expo) 0.05s forwards;
+}
+
+/* ── Copy ── */
+.about.in-view .about__copy .eyebrow {
+  animation: fadeSlideUp 0.5s var(--ease-out-expo) 0.15s forwards;
+}
+
+.about.in-view .about__title-line:nth-child(1) span {
+  animation: titleMaskReveal 0.65s var(--ease-out-expo) 0.28s forwards;
+}
+
+.about.in-view .about__title-line:nth-child(3) span {
+  animation: titleMaskReveal 0.65s var(--ease-out-expo) 0.40s forwards;
+}
+
+.about.in-view .about__text:nth-of-type(1) {
+  animation: fadeSlideUp 0.5s var(--ease-out-expo) 0.52s forwards;
+}
+
+.about.in-view .about__text:nth-of-type(2) {
+  animation: fadeSlideUp 0.5s var(--ease-out-expo) 0.62s forwards;
+}
+
+.about.in-view .about__link {
+  animation: fadeSlideUp 0.5s var(--ease-out-expo) 0.74s forwards;
+}
+
+/* ── Emblem ── */
+.about.in-view .about__emblem {
+  animation: emblemReveal 0.9s var(--ease-out-expo) 0.35s forwards;
+}
+
+.about.in-view .about__emblem img {
+  animation:
+    emblemFloat 5s ease-in-out 1.25s infinite,
+    emblemGlow 4s ease-in-out 1.25s infinite;
+  opacity: 0.9;
+}
+
+/* ── Pillars ── */
+.about.in-view .pillar:nth-child(1) { animation: slideFromRight 0.6s var(--ease-out-expo) 0.35s forwards; }
+.about.in-view .pillar:nth-child(2) { animation: slideFromRight 0.6s var(--ease-out-expo) 0.50s forwards; }
+.about.in-view .pillar:nth-child(3) { animation: slideFromRight 0.6s var(--ease-out-expo) 0.65s forwards; }
+.about.in-view .pillar:nth-child(4) { animation: slideFromRight 0.6s var(--ease-out-expo) 0.80s forwards; }
+
+.about.in-view .pillar:nth-child(1) .pillar__divider { animation: expandLine 0.4s ease-out 0.85s forwards; }
+.about.in-view .pillar:nth-child(2) .pillar__divider { animation: expandLine 0.4s ease-out 1.0s forwards; }
+.about.in-view .pillar:nth-child(3) .pillar__divider { animation: expandLine 0.4s ease-out 1.15s forwards; }
+
+/* ── Typography ── */
+.about__title-line {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.about__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(28px, 3vw, 38px);
+  line-height: 1.12;
+  margin-bottom: 20px;
+}
+
+.about__text {
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--color-text-dim);
+  margin-bottom: 14px;
+  max-width: 380px;
+}
+
+/* ── Link ── */
+.about__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-weight: 700;
+  font-size: 13.5px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--color-orange);
+  border-bottom: 1.5px solid currentColor;
+  padding-bottom: 2px;
+  width: fit-content;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.about__link:hover {
+  color: #ff6b35;
+  border-color: #ff6b35;
+}
+
+.about__link span {
+  display: inline-block;
+  transition: transform 0.3s var(--ease-out-expo);
+}
+
+.about__link:hover span {
+  transform: translateX(5px);
+}
+
+/* ── Emblem ── */
+.about__emblem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about__emblem img {
+  width: 100%;
+  max-width: 260px;
+}
+
+/* ── Pillars ── */
+.about__pillars {
+  display: flex;
+  flex-direction: column;
+}
+
+.pillar {
+  position: relative;
+  display: flex;
+  gap: 16px;
+  padding: 18px 8px;
+  margin: 0 -8px;
+  border-radius: 10px;
+  transition: transform 0.35s var(--ease-out-expo), background 0.35s ease;
+}
+
+.pillar:hover {
+  transform: translateX(6px);
+  background: rgba(255, 91, 31, 0.04);
+}
+
+.pillar__icon {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--color-orange);
+  transition: transform 0.35s var(--ease-out-expo);
+}
+
+.pillar:hover .pillar__icon {
+  transform: scale(1.18);
+}
+
+.pillar h3 {
+  font-family: var(--font-display);
+  font-size: 15.5px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.pillar p {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--color-text-dim);
+}
+
+.pillar__divider {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--color-border);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .about::before,
+  .about__copy .eyebrow,
+  .about__title-line span,
+  .about__text,
+  .about__link,
+  .about__emblem,
+  .about__emblem img,
+  .pillar,
+  .pillar__divider,
+  .about__orb,
+  .about__pulse,
+  .about__streak,
+  .about__grain {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .pillar__divider {
+    transform: scaleX(1) !important;
+  }
+
+  .pillar,
+  .about__link,
+  .pillar__icon {
+    transition: none !important;
+  }
+
+  .about__grain {
+    display: none;
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 1080px) {
+  .about {
+    grid-template-columns: 1fr;
+    padding: 40px 28px;
+  }
+
+  .about__emblem img {
+    max-width: 200px;
+  }
+
+  .about__pulse {
+    left: 50%;
+  }
+}
+
+@media (max-width: 480px) {
+  .about {
+    padding: 32px 20px;
+    margin-top: 20px;
+  }
+
+  .about__emblem {
+    order: -1;
+  }
+
+  .about__emblem img {
+    max-width: 150px;
+  }
+
+  .about__text {
+    max-width: 100%;
+  }
+
+  .about__orb--1 { width: 250px; height: 250px; }
+  .about__orb--2 { width: 200px; height: 200px; }
+  .about__orb--3 { width: 150px; height: 150px; }
+}
