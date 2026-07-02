@@ -23,8 +23,8 @@ import {
   Flame,
 } from "lucide-react";
 
-import ballAsset from "@/assets/ball.png";
-const ballImg = "@/assets/ball.png";
+import ballAsset from "@/assets/cricket-ball.png.asset.json";
+import ballImg  from "@/assets/ball.png";
 import stadiumImg from "@/assets/stadium.jpg";
 import batsmanImg from "@/assets/batsman.jpg";
 import crowdImg from "@/assets/crowd.jpg";
