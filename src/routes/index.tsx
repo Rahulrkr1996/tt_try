@@ -23,13 +23,12 @@ import {
   Flame,
 } from "lucide-react";
 
-import ballAsset from "@/assets/cricket-ball.png.asset.json";
-const ballImg = ballAsset.url;
+import ballImg from "@/assets/cricket-ball.png";
 import stadiumImg from "@/assets/stadium.jpg";
 import batsmanImg from "@/assets/batsman.jpg";
 import crowdImg from "@/assets/crowd.jpg";
 import helmetImg from "@/assets/helmet.jpg";
-import ttLogo from "@/assets/tt-logo.png.asset.json";
+import ttLogoImg from "@/assets/tt-logo.png";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 /* ---------------- Perf gate ---------------- */
@@ -68,7 +67,7 @@ export const Route = createFileRoute("/")({
   }),
 });
 
-const LOGO_URL = ttLogo.url;
+const LOGO_URL = ttLogoImg;
 const HERO_BALL_CLEANUP_PROGRESS = 0.62;
 let heroBallIntroCompleted = false;
 
